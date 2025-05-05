@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GDSMessenger - Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="chat-container">
+    <header>
+      <h1>GDSMessenger</h1>
+      <button id="logout">Cerrar Sesión</button>
+    </header>
+    <main id="chatWindow">
+      <!-- Los mensajes se mostrarán aquí -->
+    </main>
+    <footer>
+      <form id="messageForm">
+        <input type="text" id="messageInput" placeholder="Escribe tu mensaje..." required>
+        <button type="submit">Enviar</button>
+      </form>
+    </footer>
+  </div>
+
+  <script type="module">
+    import { logout, sendMessage, loadMessages } from './GDSMessenger.js';
+
+    document.getElementById("logout").addEventListener("click", logout);
+
+    const messageForm = document.getElementById("messageForm");
+    messageForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const message = document.getElementById("messageInput").value;
+      sendMessage(message);
+      document.getElementById("messageInput").value = '';
+    });
+
+    // Carga inicial de mensajes
+    loadMessages();
+  </script>
+</body>
+</html>
