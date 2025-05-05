@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GDSMessenger</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>GDSMessenger</h1>
+      <p>Conecta con tus amigos de manera rápida y segura</p>
+    </header>
+
+    <main>
+      <div class="form-container">
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+          <input type="email" id="email" placeholder="Correo Electrónico" required>
+          <input type="password" id="password" placeholder="Contraseña" required>
+          <button type="button" id="loginEmail">Iniciar Sesión</button>
+          <p>¿No tienes cuenta? <a href="#" id="registerLink">Regístrate</a></p>
+        </form>
+
+        <hr>
+
+        <button id="loginGoogle" class="google-login">Iniciar Sesión con Google</button>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 GDSMessenger - Todos los derechos reservados</p>
+    </footer>
+  </div>
+
+  <script type="module">
+    import { loginWithEmail, registerWithEmail, loginWithGoogle } from "./app.js";
+
+    document.getElementById("loginEmail").addEventListener("click", () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      loginWithEmail(email, password);
+    });
+
+    document.getElementById("loginGoogle").addEventListener("click", loginWithGoogle);
+
+    document.getElementById("registerLink").addEventListener("click", () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      registerWithEmail(email, password);
+    });
+  </script>
+</body>
+</html>
